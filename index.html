@@ -142,16 +142,6 @@ body.open .hud{opacity:1}
 .tape span{white-space:nowrap;font-size:9px;letter-spacing:.24em;color:var(--dim);padding-left:100%;animation:24s linear infinite mq}
 @keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-/* sound prompt */
-.snd{position:fixed;left:50%;top:14px;z-index:60;translate:-50% 0;display:flex;align-items:center;gap:10px;padding:8px 16px 8px 9px;background:var(--ink);color:var(--cream);border:1px solid var(--neon);
-  box-shadow:0 12px 30px rgba(0,0,0,.6),0 0 18px var(--neon-glow);cursor:pointer;opacity:0;transform:translateY(-14px);transition:opacity .5s .4s,transform .5s .4s;font-family:var(--disp);font-size:12px;letter-spacing:.18em;user-select:none}
-body.open .snd{opacity:1;transform:none}
-.snd.gone{opacity:0;transform:translateY(-14px);pointer-events:none;transition-delay:0s}
-.snd i{position:relative;flex:none;width:28px;height:28px;background:var(--neon);display:grid;place-items:center;color:var(--ink);border-radius:50%}
-.snd i svg{width:15px;height:15px}
-.snd i::after{content:"";position:absolute;inset:-6px;border:1px solid var(--neon);border-radius:50%;animation:ping 1.7s ease-out infinite}
-@keyframes ping{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.6);opacity:0}}
-.snd small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--dim);margin-top:2px;white-space:nowrap}
 
 /* ---------- lightbox ---------- */
 .modal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(5,6,10,.9);backdrop-filter:blur(3px)}
@@ -179,7 +169,6 @@ body.open .snd{opacity:1;transform:none}
   .wall{order:6;justify-content:center;flex-wrap:wrap;padding-top:14px}
   .wall h4{position:static;translate:0 0;width:100%;text-align:center}
   .tape{position:fixed;left:0;right:0;bottom:0}
-  .snd{top:12px;width:calc(100% - 20px);justify-content:center;transform:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
@@ -203,7 +192,6 @@ body.open .snd{opacity:1;transform:none}
 </div>
 <div class="haze"><i style="left:-10%;animation-duration:38s"></i><i style="left:40%;animation-duration:46s;animation-delay:-20s"></i></div>
 
-<button class="snd" id="sndPrompt"><i><svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></i><span>SOUND ON<small>the jukebox is quiet until you tap</small></span></button>
 
 <div class="page">
   <div class="hud sign">
@@ -289,10 +277,9 @@ Nobody orders, nobody leaves</p>
   function tick(){ var d = new Date(), h = d.getHours(), m = d.getMinutes(); clock.textContent = (h<10?'0':'')+h+':'+(m<10?'0':'')+m; }
   tick(); setInterval(tick, 20000);
 
-  var bgm = document.getElementById('bgm'), snd = document.getElementById('sndPrompt'), armed = false, hasMusic = true, intro = document.getElementById('intro');
+  var bgm = document.getElementById('bgm'), armed = false, hasMusic = true, intro = document.getElementById('intro');
   bgm.addEventListener('error', function(){ hasMusic = false; });
-  function arm(){ if(armed) return; armed = true; snd.classList.add('gone'); if(hasMusic){ bgm.volume = .4; bgm.play().catch(function(){}); } }
-  snd.addEventListener('click', arm);
+  function arm(){ if(armed) return; armed = true; if(hasMusic){ bgm.volume = .4; bgm.play().catch(function(){}); } }
   document.addEventListener('pointerdown', function(){ if(!intro.classList.contains('gone')) return; arm(); }, true);
   document.addEventListener('keydown', function(){ if(!intro.classList.contains('gone')) return; arm(); }, true);
 
