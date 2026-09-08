@@ -104,12 +104,11 @@ body.open .hud{opacity:1}
 .ticket .items div{display:flex;justify-content:space-between;gap:10px;height:22px;color:#1d2a1a}
 .ticket .items i{font-style:normal;color:#1d2a1a}
 .ticket .items span{color:#4c6a48;letter-spacing:.1em}
-.ticket .ca-row{display:flex;align-items:center;gap:8px;height:22px;margin:0 12px;color:#1d2a1a}
+.ticket .ca-row{display:flex;align-items:center;gap:8px;height:22px;margin:0 12px;color:#1d2a1a;cursor:pointer}
 .ticket .ca-row .tag{font-size:9px;letter-spacing:.2em;color:#4c6a48;flex:none;font-weight:600}
 .ticket .ca-row .ca-val{font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:center;letter-spacing:.06em}
-.ticket .ca-row .cp{display:none;font-size:9px;letter-spacing:.14em;color:#c8352f;flex:none;font-weight:600}
+.ticket .ca-row .cp{display:block;font-size:9px;letter-spacing:.14em;color:#c8352f;flex:none;font-weight:600}
 .ticket .ca-row.live{cursor:pointer;background:#fff7c2;box-shadow:0 0 16px rgba(255,207,107,.55)}
-.ticket .ca-row.live .cp{display:block}
 .ticket .btns{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;padding:8px 12px 0}
 .btn{height:34px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   background:transparent;color:#1d2a1a;border:2px solid #1d2a1a;border-radius:6px;transition:transform .12s;line-height:1}
@@ -146,10 +145,6 @@ body.open .hud{opacity:1}
 .wall button img{width:100%;aspect-ratio:1;object-fit:cover;filter:sepia(.15) contrast(1.05)}
 .wall button i{position:absolute;left:0;right:0;bottom:3px;font-style:normal;font-size:8px;letter-spacing:.16em;color:#4a3a2c;text-align:center;font-family:var(--disp)}
 
-/* ticker tape along the bottom */
-.tape{left:0;right:0;bottom:0;z-index:13;height:22px;background:var(--ink);border-top:1px solid #2a2118;overflow:hidden;display:flex;align-items:center}
-.tape span{white-space:nowrap;font-size:9px;letter-spacing:.24em;color:var(--dim);padding-left:100%;animation:24s linear infinite mq}
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
 
 /* ---------- lightbox ---------- */
@@ -177,7 +172,6 @@ body.open .hud{opacity:1}
   .bell{order:5;width:100%;justify-items:center}
   .wall{order:6;justify-content:center;flex-wrap:wrap;padding-top:14px}
   .wall h4{position:static;translate:0 0;width:100%;text-align:center}
-  .tape{position:fixed;left:0;right:0;bottom:0}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
@@ -253,8 +247,6 @@ body.open .hud{opacity:1}
   </div>
 </div>
 
-<div class="hud tape"><span>OPEN 24H /// TABLE 0 /// KITCHEN READY /// JUKEBOX: ONE SONG /// COFFEE: SAME CUP /// </span></div>
-
 <div class="modal" id="modal">
   <div class="gal" role="dialog" aria-label="Regulars">
     <div class="frame">
@@ -286,7 +278,8 @@ body.open .hud{opacity:1}
   document.querySelectorAll('[data-link="x"]').forEach(function(a){ a.href = S.X_URL || 'https://x.com'; a.target='_blank'; a.rel='noopener'; });
   var caBox = document.getElementById('ca'), caVal = document.getElementById('caVal'), caCopy = document.getElementById('caCopy');
   caVal.textContent = HAS_CA ? CA : 'soon';
-  if(HAS_CA){ caBox.classList.add('live'); caBox.title = CA; caBox.addEventListener('click', function(){ if(navigator.clipboard) navigator.clipboard.writeText(CA); var old = caCopy.textContent; caCopy.textContent = '[ COPIED ]'; setTimeout(function(){ caCopy.textContent = old; }, 1400); }); }
+  if(HAS_CA){ caBox.classList.add('live'); caBox.title = CA; }
+  caBox.addEventListener('click', function(){ var old = caCopy.textContent; if(HAS_CA){ if(navigator.clipboard) navigator.clipboard.writeText(CA); caCopy.textContent = '[ COPIED ]'; } else { caCopy.textContent = '[ NOT YET ]'; } setTimeout(function(){ caCopy.textContent = old; }, 1400); });
 
   var clock = document.getElementById('clock');
   function tick(){ var d = new Date(), h = d.getHours(), m = d.getMinutes(); clock.textContent = (h<10?'0':'')+h+':'+(m<10?'0':'')+m; }
