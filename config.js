@@ -1,6 +1,6 @@
 /* ================= CONFIG: единственное место, где меняются данные ================= */
 window.SITE = {
-  CA:      "SOON",                       /* строго "SOON" до лаунча, потом 0x… (42 символа) */
+  CA:      "0x5C54C396fdba6a8A47b823fba62768C6f53a4F4d",                       /* строго "SOON" до лаунча, потом 0x… (42 символа) */
   X_URL:   "https://x.com/diner_rh",
   NAME:    "The Last Meme Diner",
   TICKER:  "$DINER",
