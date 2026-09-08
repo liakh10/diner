@@ -4,7 +4,7 @@
 <script src="config.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Diner</title>
+<title>The Last Meme Diner</title>
 <meta name="description" content="Open all night, nobody orders, nobody leaves" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/apple-icon.png" />
@@ -68,7 +68,8 @@ body.open .hud{opacity:1}
 
 /* neon sign, top left */
 .sign{left:var(--pad);top:var(--pad);display:grid;gap:6px}
-.sign h1{font-family:var(--disp);font-weight:400;font-size:clamp(44px,8vw,112px);line-height:.9;letter-spacing:.06em;color:#fff4f6;
+.sign .pre{font-family:var(--disp);font-size:clamp(16px,2.2vw,30px);letter-spacing:.3em;color:#ffd6de;text-shadow:0 0 6px #fff,0 0 12px var(--neon),0 0 26px var(--neon-glow);animation:neon 9s infinite;margin-bottom:2px}
+.sign h1{font-family:var(--disp);font-weight:400;font-size:clamp(44px,8vw,112px);line-height:.9;letter-spacing:.06em;color:#fff4f6;margin-top:0;
   text-shadow:0 0 6px #fff,0 0 14px var(--neon),0 0 32px var(--neon),0 0 60px var(--neon-glow),0 0 90px var(--neon-glow);animation:neon 7s infinite}
 .sign h1 span{display:inline-block}
 .sign h1 span:nth-child(3){animation:tube 4s steps(1,end) infinite}
@@ -96,7 +97,7 @@ body.open .hud{opacity:1}
 .ticket::before,.ticket::after{content:"";position:absolute;left:0;right:0;height:8px;background:radial-gradient(circle at 6px 0,transparent 5px,var(--paper) 5.5px) -6px 0/12px 8px repeat-x}
 .ticket::before{top:-7px;transform:rotate(180deg)}
 .ticket::after{bottom:-7px}
-.ticket h3{font-family:var(--disp);font-weight:400;font-size:13px;letter-spacing:.24em;text-align:center;margin-bottom:6px}
+.ticket h3{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.12em;text-align:center;margin-bottom:6px}
 .ticket .meta{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.14em;color:#6b5a44;border-bottom:1px dashed #b9a98c;padding-bottom:6px;margin-bottom:8px}
 .ticket .ca-row{display:flex;align-items:center;gap:8px;padding:7px 8px;background:#e9dfc4;border:1px dashed #b9a98c;margin-bottom:9px}
 .ticket .ca-row .tag{font-size:9px;letter-spacing:.2em;color:#6b5a44;flex:none;font-weight:600}
@@ -195,6 +196,7 @@ body.open .hud{opacity:1}
 
 <div class="page">
   <div class="hud sign">
+    <div class="pre" id="pre">THE LAST MEME</div>
     <h1 id="mark"><span>D</span><span>I</span><span>N</span><span>E</span><span>R</span></h1>
     <div class="sub"><i></i>OPEN 24H · NO ORDERS</div>
     <p data-tagline>Open all night
@@ -266,7 +268,8 @@ Nobody orders, nobody leaves</p>
   document.querySelectorAll('[data-name]').forEach(function(e){ e.textContent = S.NAME.toUpperCase(); });
   document.querySelectorAll('[data-tagline]').forEach(function(e){ e.textContent = S.TAGLINE; });
   document.title = S.NAME;
-  var mark = document.getElementById('mark'); mark.innerHTML = S.NAME.toUpperCase().split('').map(function(c){ return '<span>' + (c === ' ' ? '&nbsp;' : c) + '</span>'; }).join('');
+  var words = S.NAME.toUpperCase().split(' '), last = words.pop(); document.getElementById('pre').textContent = words.join(' ');
+  var mark = document.getElementById('mark'); mark.innerHTML = last.split('').map(function(c){ return '<span>' + c + '</span>'; }).join('');
   document.querySelectorAll('[data-link="pons"]').forEach(function(a){ a.href = HAS_CA ? window.PONS_HOME + '/' + CA : window.PONS_HOME; a.target='_blank'; a.rel='noopener'; });
   document.querySelectorAll('[data-link="x"]').forEach(function(a){ a.href = S.X_URL || 'https://x.com'; a.target='_blank'; a.rel='noopener'; });
   var caBox = document.getElementById('ca'), caVal = document.getElementById('caVal'), caCopy = document.getElementById('caCopy');
