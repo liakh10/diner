@@ -104,10 +104,11 @@ body.open .hud{opacity:1}
 .ticket .items div{display:flex;justify-content:space-between;gap:10px;height:22px;color:#1d2a1a}
 .ticket .items i{font-style:normal;color:#1d2a1a}
 .ticket .items span{color:#4c6a48;letter-spacing:.1em}
-.ticket .ca-row{display:flex;align-items:center;gap:8px;height:22px;margin:0 12px;color:#1d2a1a;cursor:pointer}
-.ticket .ca-row .tag{font-size:9px;letter-spacing:.2em;color:#4c6a48;flex:none;font-weight:600}
-.ticket .ca-row .ca-val{font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:center;letter-spacing:.06em}
-.ticket .ca-row .cp{display:block;font-size:9px;letter-spacing:.14em;color:#c8352f;flex:none;font-weight:600}
+.ticket .ca-row{display:grid;justify-items:center;gap:0;margin:0 12px;color:#1d2a1a;cursor:pointer;line-height:22px}
+.ticket .ca-row .tag{font-size:9px;letter-spacing:.3em;color:#4c6a48;font-weight:600}
+.ticket .ca-row .ca-val{font-size:13px;font-weight:600;white-space:nowrap;max-width:100%;text-align:center;letter-spacing:.06em}
+.ticket .ca-row.live .ca-val{font-size:clamp(9px,2.5vw,11px);letter-spacing:.01em}
+.ticket .ca-row .cp{display:block;font-size:9px;letter-spacing:.2em;color:#c8352f;font-weight:600}
 .ticket .ca-row.live{cursor:pointer;background:#fff7c2;box-shadow:0 0 16px rgba(255,207,107,.55)}
 .ticket .btns{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;padding:8px 12px 0}
 .btn{height:34px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
@@ -230,7 +231,7 @@ body.open .hud{opacity:1}
       <div><span>1 PIE</span><i>2016</i></div>
       <div><span>ORDERS</span><i>0</i></div>
     </div>
-    <div class="ca-row" id="ca"><span class="tag">CA</span><span class="ca-val" id="caVal">soon</span><span class="cp" id="caCopy">[ COPY ]</span></div>
+    <div class="ca-row" id="ca"><span class="tag">CONTRACT</span><span class="ca-val" id="caVal">soon</span><span class="cp" id="caCopy">[ COPY ]</span></div>
     <div class="btns">
       <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad"><svg><use href="#i-pons"/></svg>Buy</a>
       <a class="btn" data-link="x" href="https://x.com"><svg><use href="#i-x"/></svg>X</a>
