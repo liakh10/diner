@@ -4,7 +4,7 @@ window.SITE = {
   X_URL:   "https://x.com/soon",
   NAME:    "The Last Meme Diner",
   TICKER:  "$DINER",
-  TAGLINE: "Open all night\nNobody orders, nobody leaves"
+  TAGLINE: ""
 };
 window.PONS_HOME = "https://www.ponsfamily.com/launchpad";
 window.DEX_HOME  = "https://dexscreener.com/robinhood";

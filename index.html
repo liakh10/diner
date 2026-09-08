@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>The Last Meme Diner</title>
-<meta name="description" content="Open all night, nobody orders, nobody leaves" />
+<meta name="description" content="A diner at 3 AM for memes that left the front page" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/apple-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -92,26 +92,34 @@ body.open .hud{opacity:1}
 .board .lamp{position:absolute;left:0;right:0;top:-6px;height:6px;background:linear-gradient(90deg,transparent,rgba(255,207,107,.8),transparent)}
 
 /* the receipt: CA + links, bottom left */
-.ticket{left:var(--pad);bottom:calc(var(--pad) + 8px);width:min(320px,42vw);background:var(--paper);color:#2a1a0c;padding:14px 14px 18px;rotate:-1.6deg;
-  box-shadow:0 18px 40px rgba(0,0,0,.6);font-size:11px;line-height:1.5;letter-spacing:.02em}
-.ticket::before,.ticket::after{content:"";position:absolute;left:0;right:0;height:8px;background:radial-gradient(circle at 6px 0,transparent 5px,var(--paper) 5.5px) -6px 0/12px 8px repeat-x}
-.ticket::before{top:-7px;transform:rotate(180deg)}
-.ticket::after{bottom:-7px}
-.ticket h3{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.12em;text-align:center;margin-bottom:6px}
-.ticket .meta{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.14em;color:#6b5a44;border-bottom:1px dashed #b9a98c;padding-bottom:6px;margin-bottom:8px}
-.ticket .ca-row{display:flex;align-items:center;gap:8px;padding:7px 8px;background:#e9dfc4;border:1px dashed #b9a98c;margin-bottom:9px}
-.ticket .ca-row .tag{font-size:9px;letter-spacing:.2em;color:#6b5a44;flex:none;font-weight:600}
-.ticket .ca-row .ca-val{font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;color:#2a1a0c}
-.ticket .ca-row .cp{display:none;font-size:9px;letter-spacing:.14em;color:#8f1630;flex:none;font-weight:600}
-.ticket .ca-row.live{cursor:pointer;background:#fff6dc;border-style:solid;border-color:#ffcf6b;box-shadow:0 0 16px rgba(255,207,107,.5)}
+.ticket{left:var(--pad);bottom:calc(var(--pad) + 8px);width:min(330px,42vw);color:#1d2a1a;padding:0;rotate:-1.6deg;
+  background:#e4efdc;background-image:repeating-linear-gradient(180deg,transparent 0 21px,rgba(60,110,60,.35) 21px 22px);
+  box-shadow:0 18px 40px rgba(0,0,0,.6);font-size:11px;line-height:22px;letter-spacing:.02em;font-family:var(--mono)}
+.ticket::before{content:"";position:absolute;left:0;right:0;top:-7px;height:8px;background:radial-gradient(circle at 6px 8px,transparent 5px,#e4efdc 5.5px) -6px 0/12px 8px repeat-x}
+.ticket .head{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 6px;background:#c8352f;color:#fff3e6;font-family:var(--disp);font-size:13px;letter-spacing:.2em}
+.ticket .head small{font-family:var(--mono);font-size:9px;letter-spacing:.14em;opacity:.9}
+.ticket .fields{display:grid;grid-template-columns:1fr 1fr 1fr;padding:0 12px;border-bottom:2px solid #c8352f;font-size:9px;letter-spacing:.14em;color:#4c6a48}
+.ticket .fields b{display:block;font-family:var(--disp);font-size:12px;letter-spacing:.06em;color:#1d2a1a;font-weight:400}
+.ticket .items{padding:0 12px}
+.ticket .items div{display:flex;justify-content:space-between;gap:10px;height:22px;color:#1d2a1a}
+.ticket .items i{font-style:normal;color:#1d2a1a}
+.ticket .items span{color:#4c6a48;letter-spacing:.1em}
+.ticket .ca-row{display:flex;align-items:center;gap:8px;height:22px;margin:0 12px;color:#1d2a1a}
+.ticket .ca-row .tag{font-size:9px;letter-spacing:.2em;color:#4c6a48;flex:none;font-weight:600}
+.ticket .ca-row .ca-val{font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:center;letter-spacing:.06em}
+.ticket .ca-row .cp{display:none;font-size:9px;letter-spacing:.14em;color:#c8352f;flex:none;font-weight:600}
+.ticket .ca-row.live{cursor:pointer;background:#fff7c2;box-shadow:0 0 16px rgba(255,207,107,.55)}
 .ticket .ca-row.live .cp{display:block}
-.ticket .btns{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:6px}
-.btn{height:34px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--disp);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:#2a1a0c;color:var(--paper);transition:transform .12s}
+.ticket .btns{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;padding:8px 12px 0}
+.btn{height:34px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  background:transparent;color:#1d2a1a;border:2px solid #1d2a1a;border-radius:6px;transition:transform .12s;line-height:1}
 .btn svg{width:13px;height:13px}
-.btn.buy{background:var(--neon);color:#fff1f3}
+.btn.buy{background:#c8352f;color:#fff3e6;border-color:#c8352f;box-shadow:0 0 14px rgba(200,53,47,.45)}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(1px)}
-.ticket .total{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.18em;color:#6b5a44;margin-top:9px;border-top:1px dashed #b9a98c;padding-top:6px}
+.ticket .total{display:flex;justify-content:space-between;padding:0 12px 6px;font-size:10px;letter-spacing:.18em;color:#4c6a48}
+.ticket .total b{font-family:var(--disp);font-size:14px;letter-spacing:.08em;color:#c8352f;font-weight:400}
+.ticket .stamp{position:absolute;right:12px;bottom:34px;rotate:-14deg;font-family:var(--disp);font-size:20px;letter-spacing:.2em;color:#c8352f;border:3px solid #c8352f;padding:1px 8px;opacity:.75;pointer-events:none}
 
 /* service bell, bottom right */
 .bell{right:var(--pad);bottom:calc(var(--pad) + 8px);display:grid;justify-items:center;gap:8px;width:min(190px,30vw)}
@@ -199,8 +207,6 @@ body.open .hud{opacity:1}
     <div class="pre" id="pre">THE LAST MEME</div>
     <h1 id="mark"><span>D</span><span>I</span><span>N</span><span>E</span><span>R</span></h1>
     <div class="sub"><i></i>OPEN 24H · NO ORDERS</div>
-    <p data-tagline>Open all night
-Nobody orders, nobody leaves</p>
   </div>
 
   <div class="hud wall" id="wall"><h4>REGULARS · CLICK TO OPEN</h4></div>
@@ -223,15 +229,21 @@ Nobody orders, nobody leaves</p>
   </aside>
 
   <div class="hud ticket">
-    <h3 data-name>DINER</h3>
-    <div class="meta"><span>ORDER #0000</span><span>TABLE 0</span><span id="clock">--:--</span></div>
+    <div class="head"><span>GUEST CHECK</span><small id="clock">--:--</small></div>
+    <div class="fields"><div>TABLE<b>0</b></div><div>GUESTS<b>5</b></div><div>SERVER<b>none</b></div></div>
+    <div class="items">
+      <div><span>1 COFFEE</span><i>2011</i></div>
+      <div><span>1 PIE</span><i>2016</i></div>
+      <div><span>ORDERS</span><i>0</i></div>
+    </div>
     <div class="ca-row" id="ca"><span class="tag">CA</span><span class="ca-val" id="caVal">soon</span><span class="cp" id="caCopy">[ COPY ]</span></div>
     <div class="btns">
       <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad"><svg><use href="#i-pons"/></svg>Buy</a>
       <a class="btn" data-link="x" href="https://x.com"><svg><use href="#i-x"/></svg>X</a>
       <a class="btn" href="/docs">Docs</a>
     </div>
-    <div class="total"><span>TOTAL</span><span>NOTHING ORDERED</span></div>
+    <div class="total"><span>TOTAL</span><b>$0.00</b></div>
+    <div class="stamp">UNPAID</div>
   </div>
 
   <div class="hud bell">
@@ -241,7 +253,7 @@ Nobody orders, nobody leaves</p>
   </div>
 </div>
 
-<div class="hud tape"><span>OPEN 24H /// NOBODY ORDERS /// NOBODY LEAVES /// THE COFFEE IS STILL THE SAME CUP /// THE COOK IS READY /// </span></div>
+<div class="hud tape"><span>OPEN 24H /// TABLE 0 /// KITCHEN READY /// JUKEBOX: ONE SONG /// COFFEE: SAME CUP /// </span></div>
 
 <div class="modal" id="modal">
   <div class="gal" role="dialog" aria-label="Regulars">
