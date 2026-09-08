@@ -175,6 +175,7 @@ body.open .hud{opacity:1}
   .wall h4{position:static;translate:0 0;width:100%;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+.btn[data-link="x"] svg{width:18px;height:18px}
 </style>
 </head>
 <body class="crt">
@@ -234,7 +235,7 @@ body.open .hud{opacity:1}
     <div class="ca-row" id="ca"><span class="tag">CONTRACT</span><span class="ca-val" id="caVal">soon</span><span class="cp" id="caCopy">[ COPY ]</span></div>
     <div class="btns">
       <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad"><svg><use href="#i-pons"/></svg>Buy</a>
-      <a class="btn" data-link="x" href="https://x.com"><svg><use href="#i-x"/></svg>X</a>
+      <a class="btn" data-link="x" href="https://x.com" aria-label="X"><svg><use href="#i-x"/></svg></a>
       <a class="btn" href="/docs">Docs</a>
     </div>
     <div class="total"><span>TOTAL</span><b>$0.00</b></div>
